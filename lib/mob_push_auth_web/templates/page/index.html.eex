@@ -1,0 +1,16 @@
+<section class="phx-hero">
+  <h1><%= gettext "Appless mobile push notification" %></h1>
+</section>
+
+<section>
+  <h2>Actions</h2>
+  <ul>
+    <li>
+      <a href="/register/login">Register</a>
+    </li>
+    <li>
+      <a href="/auth/login">Authenticate</a>
+    </li>
+  </ul>
+  </article>
+</section>

@@ -1,0 +1,8 @@
+<section class="phx-hero">
+  <h1><%= gettext "Appless mobile push notification" %></h1>
+  <p>Register your smartphone</p>
+</section>
+
+<section>
+  <p>ID: <%= @id %>
+</section>

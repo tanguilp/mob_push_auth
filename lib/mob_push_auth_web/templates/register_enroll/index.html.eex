@@ -1,0 +1,10 @@
+<section class="phx-hero">
+  <h1><%= gettext "Appless mobile push notification" %></h1>
+  <p> Flash the following code and follow the instruction</p>
+</section>
+
+<section>
+  <p style="text-align:center">
+    <%= @url |> QRCode.create!(:high) |> QRCode.Svg.create(@settings) |> raw() %>
+  </p>
+</section>

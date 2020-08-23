@@ -1,0 +1,11 @@
+<section class="phx-hero">
+  <h1><%= gettext "Appless mobile push notification" %></h1>
+  <p>Enter your login</p>
+</section>
+
+<section>
+  <%= form_for @conn, Routes.register_login_path(@conn, :create), [as: :login], fn f -> %>
+    Login: <%= text_input f, :login, [placeholder: "Enter your login"]%>
+    <%= submit "Next" %>
+  <% end %>
+</section>
