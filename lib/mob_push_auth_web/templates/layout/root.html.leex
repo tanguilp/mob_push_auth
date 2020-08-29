@@ -12,7 +12,9 @@
   <body>
     <header>
       <section class="container">
-        <img height="100px" src="<%= Routes.static_path(@conn, "/images/asteroid.svg") %>" />
+        <a href="/">
+          <img height="100px" src="<%= Routes.static_path(@conn, "/images/asteroid.svg") %>" />
+	</a>
       </section>
     </header>
     <%= @inner_content %>

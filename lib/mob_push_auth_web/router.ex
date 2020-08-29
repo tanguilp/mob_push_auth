@@ -26,6 +26,11 @@ defmodule MobPushAuthWeb.Router do
 
     get "/mobile_registration/:id", MobileRegistrationController, :index
     post "/mobile_registration/:id", MobileRegistrationController, :register
+
+    get "/auth_login", AuthLoginController, :index
+    post "/auth_login", AuthLoginController, :create
+
+    live "/auth/confirm", AuthConfirmLive.Index
   end
 
   # Other scopes may use custom stacks.
