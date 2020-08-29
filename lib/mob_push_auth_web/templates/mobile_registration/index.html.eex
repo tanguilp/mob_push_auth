@@ -1,0 +1,80 @@
+<section class="phx-hero">
+  <h1><%= gettext "Appless mobile push login" %></h1>
+  <p>Register your smartphone</p>
+</section>
+
+<section style="text-align: center">
+  <p>Click on <em>Register</em> and accept notifications to register your smartphone.</p>
+  <p>Note that your phone number will <strong>not</strong> be recorded.</p>
+  <p><input id="register_button" type="button" value="Register"/></p>
+
+  <form id="subscription_form" method="post">
+    <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>"/>
+    <input id="subscription_info" type="hidden" name="subscription_info"/>
+  </form>
+
+  <script>
+    function subscribe() {
+      if (!('serviceWorker' in navigator)) {
+        alert('Unsupported');
+        return;
+      }
+      if (!('PushManager' in window)) {
+        alert('Unsupported');
+        return;
+      }
+      askPermission();
+      subscribeUserToPush();
+    }
+
+    function askPermission() {
+      return new Promise(function(resolve, reject) {
+        const permissionResult = Notification.requestPermission(function(result) {
+          resolve(result);
+        });
+        if (permissionResult) {
+          permissionResult.then(resolve, reject);
+        }
+      })
+      .then(function(permissionResult) {
+        if (permissionResult !== 'granted') {
+          throw new Error('We weren\'t granted permission.');
+        }
+      });
+    }
+
+    function subscribeUserToPush() {
+      var appKey = '<%= @app_key %>';
+      var registration = navigator.serviceWorker.register('<%= Routes.static_path(@conn, "/js/webpush-worker.js") %>');
+      return Promise.all([appKey, registration])
+      .then(function([appKey, registration]) {
+        const subscribeOptions = {
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(appKey)
+        };
+        return registration.pushManager.subscribe(subscribeOptions);
+      })
+      .then(function(pushSubscription) {
+        console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+        document.getElementById('subscription_info').value = JSON.stringify(pushSubscription);
+        document.getElementById('subscription_form').submit();
+        return pushSubscription;
+      });
+    }
+
+    function urlBase64ToUint8Array(base64String) {
+        var padding = '='.repeat((4 - base64String.length % 4) % 4);
+        var base64 = (base64String + padding)
+            .replace(/\-/g, '+')
+            .replace(/_/g, '/');
+        var rawData = window.atob(base64);
+        var outputArray = new Uint8Array(rawData.length);
+        for (var i = 0; i < rawData.length; ++i) {
+            outputArray[i] = rawData.charCodeAt(i);
+        }
+        return outputArray;
+    }
+
+    document.getElementById("register_button").addEventListener('click', subscribe);
+  </script>
+</section>

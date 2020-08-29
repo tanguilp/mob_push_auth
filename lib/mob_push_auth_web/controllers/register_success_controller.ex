@@ -1,4 +1,4 @@
-defmodule MobPushAuthWeb.PageController do
+defmodule MobPushAuthWeb.RegisterSuccessController do
   use MobPushAuthWeb, :controller
 
   def index(conn, _params) do

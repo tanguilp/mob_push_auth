@@ -7,12 +7,14 @@ defmodule MobPushAuthWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_mob_push_auth_key",
-    signing_salt: "LOopOZhK"
+    signing_salt: "zW7gJkKA"
   ]
 
   socket "/socket", MobPushAuthWeb.UserSocket,
     websocket: true,
     longpoll: false
+
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -31,6 +33,10 @@ defmodule MobPushAuthWeb.Endpoint do
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
   end
+
+  plug Phoenix.LiveDashboard.RequestLogger,
+    param_key: "request_logger",
+    cookie_key: "request_logger"
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]

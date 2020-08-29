@@ -7,15 +7,10 @@ defmodule MobPushAuth.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
       MobPushAuthWeb.Telemetry,
-      # Start the PubSub system
       {Phoenix.PubSub, name: MobPushAuth.PubSub},
-      # Start the Endpoint (http/https)
       MobPushAuthWeb.Endpoint,
-      # Start a worker by calling: MobPushAuth.Worker.start_link(arg)
-      # {MobPushAuth.Worker, arg}
-      MobPushAuth.RegistrationChallenge
+      MobPushAuth.SubscriptionStore
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
