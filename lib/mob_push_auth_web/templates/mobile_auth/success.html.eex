@@ -1,0 +1,9 @@
+<section class="phx-hero">
+  <h1><%= gettext "Appless mobile push login" %></h1>
+  <p>Authentication </p>
+</section>
+
+<section style="text-align: center">
+  <p style="font-size: 5em; color: limegreen">✔</p>
+  <p>You've been successfully logged in!</p>
+</section>
