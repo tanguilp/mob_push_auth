@@ -1,4 +1,6 @@
 defmodule MobPushAuthWeb.AuthConfirmLive.Index do
+  require Logger
+
   use MobPushAuthWeb, :live_view
 
   alias MobPushAuth.SubscriptionStore
@@ -61,6 +63,8 @@ defmodule MobPushAuthWeb.AuthConfirmLive.Index do
         url: Routes.mobile_auth_url(MobPushAuthWeb.Endpoint, :index, auth_id)
       }
     }
+
+    Logger.info("#{__MODULE__}: url=#{message.data.url}")
 
     {:ok, _response} = WebPushEncryption.send_web_push(Jason.encode!(message), subscription_info)
 
