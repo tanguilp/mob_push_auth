@@ -9,9 +9,9 @@ use Mix.Config
 
 # Configures the endpoint
 config :mob_push_auth, MobPushAuthWeb.Endpoint,
-  url: [host:
-      :inet.getif() |> elem(1) |> List.first() |> elem(0) |> Tuple.to_list() |> Enum.join(".")
-  ],
+  http: [port: {:system, "PORT"}],
+  url: [scheme: "https", host: "peaceful-depths-52358.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   secret_key_base: "SFi3htpRHSHEmBJ9SK/bUkCDU65Pr8iIjhpJ3AiSt/psFIWsDUMZcogTEet6b3O7",
   render_errors: [view: MobPushAuthWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: MobPushAuth.PubSub,

@@ -11,6 +11,7 @@ defmodule MobPushAuthWeb.Endpoint do
   ]
 
   socket "/socket", MobPushAuthWeb.UserSocket,
+    websocket: [timeout: 45_000],
     websocket: true,
     longpoll: false
 

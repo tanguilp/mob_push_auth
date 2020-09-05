@@ -1,3 +1,4 @@
+
 defmodule MobPushAuthWeb.Router do
   use MobPushAuthWeb, :router
 
@@ -34,6 +35,8 @@ defmodule MobPushAuthWeb.Router do
 
     get "/mobile_auth/:id", MobileAuthController, :index
     post "/mobile_auth/:id", MobileAuthController, :confirm
+
+    get "/auth/success", AuthSuccessController, :index
   end
 
   # Other scopes may use custom stacks.
