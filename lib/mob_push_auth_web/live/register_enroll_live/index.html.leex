@@ -6,11 +6,12 @@
 <section>
   <p style="text-align:center">
     <%=
-      Routes.mobile_registration_url(MobPushAuthWeb.Endpoint, :index, @registration_id)
-      |> IO.inspect()
-      |> QRCode.create!(:high)
-      |> QRCode.Svg.create(%QRCode.SvgSettings{qrcode_color: "#4169e1"})
-      |> raw()
+      if @registration_id, do:
+        Routes.mobile_registration_url(MobPushAuthWeb.Endpoint, :index, @registration_id)
+        |> IO.inspect()
+        |> QRCode.create!(:high)
+        |> QRCode.Svg.create(%QRCode.SvgSettings{qrcode_color: "#4169e1"})
+        |> raw()
     %>
   </p>
 </section>

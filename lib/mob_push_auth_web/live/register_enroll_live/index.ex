@@ -5,16 +5,20 @@ defmodule MobPushAuthWeb.RegisterEnrollLive.Index do
 
   @impl true
   def mount(_params, session, socket) do
-    socket =
-      socket
-      |> assign(:login, session["login"] || raise "Must login first")
-      |> assign(:registration_id, registration_id())
+    if connected?(socket) do
+      socket =
+        socket
+        |> assign(:login, session["login"] || raise "Must login first")
+        |> assign(:registration_id, registration_id())
 
-    :ok = Phoenix.PubSub.subscribe(
-      MobPushAuth.PubSub, "registration:" <> socket.assigns.registration_id
-    )
+      :ok = Phoenix.PubSub.subscribe(
+        MobPushAuth.PubSub, "registration:" <> socket.assigns.registration_id
+      )
 
-    {:ok, socket}
+      {:ok, socket}
+    else
+      {:ok, assign(socket, :registration_id, nil)}
+    end
   end
 
   @impl true
