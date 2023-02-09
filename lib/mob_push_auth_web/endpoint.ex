@@ -25,7 +25,7 @@ defmodule MobPushAuthWeb.Endpoint do
     at: "/",
     from: :mob_push_auth,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ~w(assets fonts images vendor favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

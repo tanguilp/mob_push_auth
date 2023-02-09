@@ -45,7 +45,7 @@
 
     function subscribeUserToPush() {
       var appKey = '<%= @app_key %>';
-      var registration = navigator.serviceWorker.register('<%= Routes.static_path(@conn, "/js/webpush-worker.js") %>');
+      var registration = navigator.serviceWorker.register('<%= Routes.static_path(@conn, "/vendor/webpush-worker.js") %>');
       return Promise.all([appKey, registration])
       .then(function([appKey, registration]) {
         const subscribeOptions = {
