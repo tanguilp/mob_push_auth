@@ -7,7 +7,7 @@
   <p><code><%= Routes.url(@conn) %></code> wants to log you in:</p>
   <p>
     <form method="post">
-      <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>"/>
+      <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()}/>
       <input type="submit" name="submit" value="Deny" style="background-color: darkred;border:0"/>
       <input type="submit" name="submit" value="Confirm" style="background-color: limegreen;border:0"/>
     </form>

@@ -33,15 +33,16 @@ defmodule MobPushAuth.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.0"},
-      {:phoenix_live_view, "~> 0.13.0"},
+      {:phoenix, "~> 1.6.0"},
+      {:phoenix_live_view, "~> 0.16.4"},
       {:floki, ">= 0.0.0", only: :test},
-      {:phoenix_html, "~> 2.11"},
+      {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.2.0"},
+      {:phoenix_live_dashboard, "~> 0.5"},
       {:qr_code, "~> 2.1.0"},
-      {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 0.5"},
+      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
@@ -57,7 +58,8 @@ defmodule MobPushAuth.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "cmd npm install --prefix assets"]
+      setup: ["deps.get", "cmd npm install --prefix assets"],
+      "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end
 end

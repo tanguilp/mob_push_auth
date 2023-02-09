@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 # Configures the endpoint
 config :mob_push_auth, MobPushAuthWeb.Endpoint,
@@ -28,6 +28,13 @@ config :web_push_encryption, :vapid_details,
   public_key: "BNo6lbaAEFnMjXGZpp-lXQvHwZNo95ylnUiVqQ9hrvF-q3VN4bsVKkVe8YQzK82giW4JIUCT3hq3I4w1L21OmG0",
   private_key: "rrWAXw33T-t-I3kbS3LamwNrdmKt4XTwiAdk9oFDJ6I"
 
+config :esbuild,
+  version: "0.12.18",
+  default: [
+  args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

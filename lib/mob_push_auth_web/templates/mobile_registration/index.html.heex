@@ -9,7 +9,7 @@
   <p><input id="register_button" type="button" value="Register"/></p>
 
   <form id="subscription_form" method="post">
-    <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>"/>
+    <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()}/>
     <input id="subscription_info" type="hidden" name="subscription_info"/>
   </form>
 
@@ -69,7 +69,7 @@
             .replace(/_/g, '/');
         var rawData = window.atob(base64);
         var outputArray = new Uint8Array(rawData.length);
-        for (var i = 0; i < rawData.length; ++i) {
+        for (var i = 0; i &lt; rawData.length; ++i) {
             outputArray[i] = rawData.charCodeAt(i);
         }
         return outputArray;
