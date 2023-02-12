@@ -1,18 +1,21 @@
 # MobPushAuth
 
-To start your Phoenix server:
+This is a demo Phoenix app that shows how to use Web Push notification
+to authenticate users.
 
-  * Setup the project with `mix setup`
-  * Start Phoenix endpoint with `mix phx.server`
+The flow involves 2 steps:
+1. Registration: on a computer, a user opens a QR code on his/her phone. The
+user accepts push notifications to be sent on his/her phone
+2. Authentication: on a computer, the user enters his/her login. A web push
+notification is sent to his/her phone with a link. The link opens a web
+page asking for authentication confirmation. Upon acceptance, the user is
+authenticated on the computer
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+[Demo video](https://vimeo.com/798029707)
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+This demo is deployed on
+[https://mob-push-auth.onrender.com/](https://mob-push-auth.onrender.com/).
+This is a free tiers and it can take a few minutes to start.
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+This is **not ready** for production use. Security model is not documented.
+That's just about sharing ideas :)
