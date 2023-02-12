@@ -23,6 +23,6 @@ That's just about sharing ideas :)
 ## Support
 
 As of February, 2023:
-- doesn't work on iOS
+- doesn't work on iOS (support for Web Push Notifications on iOS planned for 2023)
 - works on Android with Chrome
 - doesn't work with Android and Firefox or Mi Browser
