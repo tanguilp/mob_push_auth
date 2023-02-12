@@ -19,3 +19,10 @@ This is a free tiers and it can take a few minutes to start.
 
 This is **not ready** for production use. Security model is not documented.
 That's just about sharing ideas :)
+
+## Support
+
+As of February, 2023:
+- doesn't work on iOS
+- works on Android with Chrome
+- doesn't work with Android and Firefox or Mi Browser
